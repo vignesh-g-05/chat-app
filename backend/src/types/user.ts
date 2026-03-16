@@ -9,5 +9,5 @@ export type UserRegister = UserBase & {
 
 export type User = UserBase & {
   id: string;
-  password: string;
+  username: string;
 };
