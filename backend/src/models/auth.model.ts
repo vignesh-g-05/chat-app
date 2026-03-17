@@ -44,3 +44,13 @@ export async function getUserByEmail(email: string) {
     return null;
   }
 }
+export async function getUserById(id: string) {
+  try {
+    const query = "SELECT * FROM users WHERE id=?";
+    const [user] = await db.query<(User & RowDataPacket)[]>(query, [id]);
+    return user[0];
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}

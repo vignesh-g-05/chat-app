@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import isEmail from "validator/lib/isEmail";
-import { createUser, getUserByEmail } from "../middlewares/auth.model";
+import { createUser, getUserByEmail } from "../models/auth.model";
 import { UserBase, UserRegister } from "../types/user";
 import { compare } from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const registerUser = async (
   req: Request<{}, {}, UserRegister>,
@@ -79,9 +80,9 @@ export const loginUser = async (
   const user = await getUserByEmail(email);
 
   if (!user) {
-    return res.status(404).json({
+    return res.status(401).json({
       success: false,
-      message: "user not found",
+      message: "invalid credentials",
       data: null,
     });
   }
@@ -89,12 +90,18 @@ export const loginUser = async (
   const isValidPassword = await compare(password, user.password);
 
   if (!isValidPassword) {
-    return res.json({
+    return res.status(401).json({
       success: false,
       message: "invalid credentials",
       data: null,
     });
   }
+
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY!, {
+    expiresIn: "7d",
+  });
+
+  res.cookie("accessToken", token);
 
   return res.json({
     success: true,
