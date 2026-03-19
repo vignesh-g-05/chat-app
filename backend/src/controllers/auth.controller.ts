@@ -27,24 +27,34 @@ export const registerUser = async (
       });
     }
 
-    const result = await createUser({
+    const user = await createUser({
       username,
       email,
       password,
     });
 
-    if (typeof result === "string") {
+    if (typeof user === "string") {
       return res.status(400).json({
         success: false,
-        message: result,
+        message: user,
         data: null,
       });
     }
 
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY!, {
+      expiresIn: "7d",
+    });
+
+    res.cookie("access_token", token);
+
     return res.status(201).json({
       success: true,
       message: "user registered successfully",
-      data: result,
+      data: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -111,5 +121,14 @@ export const loginUser = async (
       username: user.username,
       email: user.email,
     },
+  });
+};
+
+export const logoutUser = async (req: Request, res: Response) => {
+  res.cookie("accessToken", "", { expires: new Date(0) });
+  return res.json({
+    success: true,
+    message: "logged out successfully",
+    data: null,
   });
 };
