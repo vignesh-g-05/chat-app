@@ -48,7 +48,7 @@
             <li><a>Users</a></li>
           </ul>
         </div>
-        <a class="btn btn-ghost text-xl" href="../index.html"
+        <a href="../index.html" class="btn btn-ghost text-xl"
           ><i data-lucide="message-square" class="size-6"></i>VVChat</a
         >
       </div>
@@ -99,46 +99,31 @@
       </div>
     </div>
     <!-- NAVBAR END-->
-    <!-- REGISTER SECTION START -->
-    <div class="flex justify-center items-center h-[90vh]">
-      <div class="card w-96 bg-base-100 border border-accent">
-        <div class="card-body">
-          <h2 class="text-2xl font-bold text-center">Register</h2>
-          <div>
-            <label for="username" class="flex gap-2 items-center">
-              <i data-lucide="user" class="w-4"></i> Username
-            </label>
-            <input
-              type="text"
-              placeholder="Username"
-              class="input input-accent mt-2"
-            />
-          </div>
-          <div>
-            <label for="email" class="flex gap-2 items-center">
-              <i data-lucide="mail" class="w-4"></i> Email
-            </label>
-            <input
-              type="email"
-              placeholder="Email"
-              class="input input-accent mt-2"
-            />
-          </div>
-          <div>
-            <label for="password" class="flex gap-2 items-center">
-              <i data-lucide="rectangle-ellipsis" class="w-4"></i> Password
-            </label>
-            <input
-              type="password"
-              placeholder="Password"
-              class="input input-accent mt-2"
-            />
-          </div>
-          <button class="btn btn-accent w-[95%] mt-5">Sign up</button>
+    <!-- USERS SECTION START -->
+    <ul class="list bg-base-100 rounded-box shadow-md">
+      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">
+        Select the user to start conversation
+      </li>
+
+      <li class="list-row">
+        <div>
+          <img
+            class="size-10 rounded-box"
+            src="https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg"
+          />
         </div>
-      </div>
-    </div>
-    <!-- REGISTER SECTION END -->
+        <div>
+          <div>Sabrino Gardener</div>
+          <div class="text-xs uppercase font-semibold opacity-60">
+            Cappuccino
+          </div>
+        </div>
+        <button class="btn btn-square btn-ghost">
+          <i data-lucide="send-horizontal" class="w-4.5"></i>
+        </button>
+      </li>
+    </ul>
+    <!-- USERS SECTION END -->
     <!-- ICONS START -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
