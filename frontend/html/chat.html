@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat app</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="h-screen">
+    <!-- NAVBAR START-->
+    <div class="navbar bg-base-100 shadow-md">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+          <ul
+            tabindex="-1"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+          >
+            <li><a>Login</a></li>
+            <li><a>Register</a></li>
+            <li><a>Users</a></li>
+          </ul>
+        </div>
+        <a href="../index.html" class="btn btn-ghost text-xl"
+          ><i data-lucide="message-square" class="size-6"></i>VVChat</a
+        >
+      </div>
+      <div class="navbar-end">
+        <label class="toggle text-base-content">
+          <input type="checkbox" value="dark" class="theme-controller" />
+
+          <svg
+            aria-label="sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </g>
+          </svg>
+
+          <svg
+            aria-label="moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </g>
+          </svg>
+        </label>
+      </div>
+    </div>
+    <!-- NAVBAR END-->
+    <!-- CHAT SECTION START -->
+    <div class="card shadow-md mt-3 w-3/6 mx-auto">
+      <div class="card-body">
+        <div class="flex justify-center items-center gap-3">
+          <a href="users.html">
+            <i data-lucide="arrow-left"></i>
+          </a>
+          <div class="avatar">
+            <div class="w-11 rounded-full">
+              <img
+                src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"
+              />
+            </div>
+          </div>
+          <p class="text-xl font-bold">Vicky</p>
+        </div>
+        <div class="h-[400px] overflow-auto">
+          <div class="chat chat-start">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp"
+                />
+              </div>
+            </div>
+            <div class="chat-header">
+              Obi-Wan Kenobi
+              <time class="text-xs opacity-50">12:45</time>
+            </div>
+            <div class="chat-bubble">You were the Chosen One!</div>
+            <div class="chat-footer opacity-50">Delivered</div>
+          </div>
+          <div class="chat chat-end">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp"
+                />
+              </div>
+            </div>
+            <div class="chat-header">
+              Anakin
+              <time class="text-xs opacity-50">12:46</time>
+            </div>
+            <div class="chat-bubble">I hate you!</div>
+            <div class="chat-footer opacity-50">Seen at 12:46</div>
+          </div>
+          <div class="chat chat-start">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp"
+                />
+              </div>
+            </div>
+            <div class="chat-header">
+              Obi-Wan Kenobi
+              <time class="text-xs opacity-50">12:45</time>
+            </div>
+            <div class="chat-bubble">You were the Chosen One!</div>
+            <div class="chat-footer opacity-50">Delivered</div>
+          </div>
+          <div class="chat chat-end">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp"
+                />
+              </div>
+            </div>
+            <div class="chat-header">
+              Anakin
+              <time class="text-xs opacity-50">12:46</time>
+            </div>
+            <div class="chat-bubble">I hate you!</div>
+            <div class="chat-footer opacity-50">Seen at 12:46</div>
+          </div>
+          <div class="chat chat-start">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp"
+                />
+              </div>
+            </div>
+            <div class="chat-header">
+              Obi-Wan Kenobi
+              <time class="text-xs opacity-50">12:45</time>
+            </div>
+            <div class="chat-bubble">You were the Chosen One!</div>
+            <div class="chat-footer opacity-50">Delivered</div>
+          </div>
+          <div class="chat chat-end">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp"
+                />
+              </div>
+            </div>
+            <div class="chat-header">
+              Anakin
+              <time class="text-xs opacity-50">12:46</time>
+            </div>
+            <div class="chat-bubble">I hate you!</div>
+            <div class="chat-footer opacity-50">Seen at 12:46</div>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <input
+            type="text"
+            class="input focus:outline-none w-full"
+            placeholder="Message"
+          />
+          <button class="btn btn-accent btn-soft btn-square">
+            <i data-lucide="send-horizontal" class="size-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- CHAT SECTION END -->
+    <!-- ICONS START -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <!-- ICONS END -->
+  </body>
+</html>
