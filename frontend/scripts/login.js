@@ -1,6 +1,5 @@
 async function loginUser(e) {
   e.preventDefault();
-  console.log(e);
   const email = document.getElementById("email")?.value;
   const password = document.getElementById("password")?.value;
   const body = {
@@ -13,6 +12,7 @@ async function loginUser(e) {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(body),
   });
   const data = await res.json();

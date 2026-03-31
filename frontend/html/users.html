@@ -16,7 +16,6 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="h-screen">
     <!-- NAVBAR START-->
@@ -102,34 +101,16 @@
     <!-- USERS SECTION START -->
     <div class="card w-4/6 mx-auto">
       <div class="card-body">
-        <ul class="list bg-base-100 rounded-box shadow-md">
+        <ul id="user-list" class="list bg-base-100 rounded-box shadow-md">
           <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">
             Select the user to start conversation
-          </li>
-          <li>
-            <a class="list-row" href="chat.html">
-              <div>
-                <img
-                  class="size-10 rounded-box"
-                  src="https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg"
-                />
-              </div>
-              <div>
-                <div>Sabrino Gardener</div>
-                <div class="text-xs uppercase font-semibold opacity-60">
-                  Cappuccino
-                </div>
-              </div>
-              <button class="btn btn-square btn-ghost">
-                <i data-lucide="send-horizontal" class="w-4.5"></i>
-              </button>
-            </a>
           </li>
         </ul>
       </div>
     </div>
 
     <!-- USERS SECTION END -->
+    <script src="../scripts/users.js"></script>
     <!-- ICONS START -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>

@@ -45,7 +45,7 @@ export const registerUser = async (
       expiresIn: "7d",
     });
 
-    res.cookie("access_token", token);
+    res.cookie("accessToken", token);
 
     return res.status(201).json({
       success: true,
