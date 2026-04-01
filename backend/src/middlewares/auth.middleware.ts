@@ -9,7 +9,6 @@ export const authenticate = async (
 ) => {
   try {
     const { accessToken } = req.cookies || {};
-    console.log(accessToken);
 
     if (!accessToken) {
       return res.status(401).json({

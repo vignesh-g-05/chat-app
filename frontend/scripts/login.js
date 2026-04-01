@@ -20,6 +20,6 @@ async function loginUser(e) {
     alert(data.message || "failed to login");
   } else {
     alert(data.message || "logged in successfully");
-    window.open("../html/users.html");
+    location.href = "../html/users.html";
   }
 }

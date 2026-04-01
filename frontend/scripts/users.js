@@ -2,6 +2,10 @@ async function getUsers() {
   const res = await fetch("http://localhost:3000/users", {
     credentials: "include",
   });
+  if (res.status === 401) {
+    location.href = "../html/login.html";
+    return;
+  }
   const data = await res.json();
   if (!data.success) {
     alert(data.message || "failed to fetch users");
@@ -41,6 +45,20 @@ function renderUsers(users) {
     li.innerHTML = listUser;
     userList.appendChild(li);
   }
+}
+
+async function logoutUser() {
+  const res = await fetch("http://localhost:3000/auth/logout", {
+    method: "POST",
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    alert("failed to logout");
+    return;
+  }
+
+  location.href = "../index.html";
 }
 
 getUsers();
