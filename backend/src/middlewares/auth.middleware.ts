@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import { NextFunction, Request, Response } from "express";
+
 import { getUserById } from "../models/auth.model";
+import jwt from "jsonwebtoken";
 
 export const authenticate = async (
   req: Request,
@@ -38,7 +39,7 @@ export const authenticate = async (
         data: null,
       });
     }
-    res.locals.user = user;
+    req.user = user;
     next();
   } catch (error: any) {
     return res.status(401).json({

@@ -1,8 +1,9 @@
-import express from "express";
 import authRouter from "./routes/auth.router";
 import cookieParser from "cookie-parser";
-import userRouter from "./routes/user.router";
 import cors from "cors";
+import express from "express";
+import messagesRouter from "./routes/messages.router";
+import userRouter from "./routes/user.router";
 
 const app = express();
 
@@ -17,5 +18,6 @@ app.use(
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/messages", messagesRouter);
 
 export default app;
