@@ -2,8 +2,8 @@ import authRouter from "./routes/auth.router";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
-import messagesRouter from "./routes/messages.router";
 import userRouter from "./routes/user.router";
+import chatRouter from "./routes/message.router";
 
 const app = express();
 
@@ -18,6 +18,6 @@ app.use(
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
-app.use("/messages", messagesRouter);
+app.use("/messages", chatRouter);
 
 export default app;
