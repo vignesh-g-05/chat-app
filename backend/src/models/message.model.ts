@@ -177,3 +177,24 @@ export const getChatMessages = async (chatId: string) => {
   ]);
   return rows;
 };
+export const isUserParticipant = async ({
+  chatId,
+  userId,
+}: {
+  userId: string;
+  chatId: string;
+}) => {
+  const query = `
+SELECT * FROM PARTICIPANTS
+WHERE USER_ID = ?
+AND CHAT_ID = ?
+LIMIT 1
+`;
+
+  const values = [userId, chatId];
+  const [rows] = await db.execute<(ParticipantsRow & RowDataPacket)[]>(
+    query,
+    values,
+  );
+  return rows.length > 0;
+};

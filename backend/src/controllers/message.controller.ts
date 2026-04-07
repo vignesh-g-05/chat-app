@@ -6,6 +6,7 @@ import {
   getOrCreateDirectChat,
   getOtherParticipant,
   getUserChatIds,
+  isUserParticipant,
 } from "../models/message.model";
 import { getUserById } from "../models/auth.model";
 
@@ -94,6 +95,15 @@ export const getMessages = async (
 ) => {
   try {
     const { chatId } = req.params;
+    const userId = req.user!.id;
+    const isParticipant = await isUserParticipant({ chatId, userId });
+    if (!isParticipant) {
+      return res.status(403).json({
+        success: false,
+        message: "forbidden",
+        data: null,
+      });
+    }
     const messages = await getChatMessages(chatId);
     return res.json({
       success: true,
@@ -101,6 +111,7 @@ export const getMessages = async (
       data: messages,
     });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       success: false,
       message: "unexpected error occured",
