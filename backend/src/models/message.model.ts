@@ -185,7 +185,7 @@ export const isUserParticipant = async ({
   chatId: string;
 }) => {
   const query = `
-SELECT * FROM PARTICIPANTS
+SELECT * FROM participants
 WHERE USER_ID = ?
 AND CHAT_ID = ?
 LIMIT 1

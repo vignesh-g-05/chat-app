@@ -1,5 +1,5 @@
-async function getUsers() {
-  const res = await fetch("http://localhost:3000/users", {
+async function getMessages() {
+  const res = await fetch("http://localhost:3000/messages", {
     credentials: "include",
   });
   if (res.status === 401) {
@@ -8,23 +8,32 @@ async function getUsers() {
   }
   const data = await res.json();
   if (!data.success) {
-    alert(data.message || "failed to fetch users");
+    alert(data.message || "failed to fetch ");
     return;
   }
 
-  const users = data.data;
-  renderUsers(users);
+  const messages = data.data;
+  renderChats(messages);
 }
 
-function renderUsers(users) {
+function renderChats(users) {
   const userList = document.getElementById("user-list");
 
   for (let i = 0; i < users.length; i++) {
     const username = users[i].username;
-    const email = users[i].email;
-    const id = users[i].id;
-    const listUser = `
-<a class="list-row" href="chat.html?name=${username}&userId=${id}">
+    const userId = users[i].userId;
+    const lastMessage = users[i].lastMessage;
+    const date = new Date(users[i].lastMessageAt);
+    const chatId = users[i].chatId;
+    const formatted = date
+      .toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .toLowerCase();
+    const listChat = `
+<a class="list-row" href="chat.html?name=${username}&chatId=${chatId}&userId=${userId}">
   <div>
     <img
       class="size-10 rounded-box"
@@ -32,18 +41,21 @@ function renderUsers(users) {
     />
   </div>
   <div>
-    <div>${username}</div>
+    <div class="flex justify-between items-center">
+      <p>${username}</p>
+    </div>
     <div class="text-xs uppercase font-semibold opacity-60">
-      ${email}
+      ${lastMessage}
     </div>
   </div>
+  <p>${formatted}</p>
   <button class="btn btn-square btn-ghost">
     <i data-lucide="send-horizontal" class="w-4.5"></i>
   </button>
 </a>
 `;
     const li = document.createElement("li");
-    li.innerHTML = listUser;
+    li.innerHTML = listChat;
     userList.appendChild(li);
   }
 }
@@ -62,4 +74,4 @@ async function logoutUser() {
   location.href = "../index.html";
 }
 
-getUsers();
+getMessages();
