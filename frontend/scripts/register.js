@@ -22,6 +22,6 @@ async function registerUser(e) {
     alert(data.message || "failed to register user");
   } else {
     alert(data.message || "user registered successfully");
-    location.href = "../html/users.html";
+    location.href = "../html/chat-list.html";
   }
 }

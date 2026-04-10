@@ -20,6 +20,6 @@ async function loginUser(e) {
     alert(data.message || "failed to login");
   } else {
     alert(data.message || "logged in successfully");
-    location.href = "../html/users.html";
+    location.href = "../html/chat-list.html";
   }
 }

@@ -1,39 +1,32 @@
-async function getMessages() {
-  const res = await fetch("http://localhost:3000/messages", {
-    credentials: "include",
-  });
-  if (res.status === 401) {
-    location.href = "../html/login.html";
-    return;
-  }
-  const data = await res.json();
-  if (!data.success) {
-    alert(data.message || "failed to fetch ");
-    return;
-  }
-
-  const messages = data.data;
-  renderChats(messages);
-}
-
-function renderChats(users) {
-  const userList = document.getElementById("user-list");
-
-  for (let i = 0; i < users.length; i++) {
-    const username = users[i].username;
-    const userId = users[i].userId;
-    const lastMessage = users[i].lastMessage;
-    const date = new Date(users[i].lastMessageAt);
-    const chatId = users[i].chatId;
-    const formatted = date
-      .toLocaleTimeString([], {
+async function getChats() {
+  try {
+    const res = await fetch("http://localhost:3000/messages/", {
+      credentials: "include",
+    });
+    if (res.status === 401) {
+      location.href = "../index.html";
+    }
+    if (!res.ok) {
+      alert("failed to fetch chats");
+      return;
+    }
+    const data = await res.json();
+    const chats = data.data;
+    const chatList = document.getElementById("chat-list");
+    for (let i = 0; i < chats.length; i++) {
+      const name = chats[i].username;
+      const lastMessage = chats[i].lastMessage;
+      const lastMessageAt = chats[i].lastMessageAt;
+      const chatId = chats[i].chatId;
+      const userId = chats[i].userId;
+      const formttedTime = new Intl.DateTimeFormat([], {
         hour: "2-digit",
         minute: "2-digit",
         hour12: true,
-      })
-      .toLowerCase();
-    const listChat = `
-<a class="list-row" href="chat.html?name=${username}&chatId=${chatId}&userId=${userId}">
+      }).format(new Date(lastMessageAt));
+
+      const listChat = `
+<a class="list-row" href="chat.html">
   <div>
     <img
       class="size-10 rounded-box"
@@ -41,22 +34,29 @@ function renderChats(users) {
     />
   </div>
   <div>
-    <div class="flex justify-between items-center">
-      <p>${username}</p>
-    </div>
+    <div>${name}</div>
     <div class="text-xs uppercase font-semibold opacity-60">
       ${lastMessage}
     </div>
   </div>
-  <p>${formatted}</p>
+  <p class="text-xs">${formttedTime}</p>
   <button class="btn btn-square btn-ghost">
     <i data-lucide="send-horizontal" class="w-4.5"></i>
   </button>
 </a>
 `;
-    const li = document.createElement("li");
-    li.innerHTML = listChat;
-    userList.appendChild(li);
+      const li = document.createElement("li");
+      li.innerHTML = listChat;
+      li.onclick = function () {
+        sessionStorage.setItem("username", name);
+        sessionStorage.setItem("userId", userId);
+        sessionStorage.setItem("chatId", chatId);
+      };
+      chatList.appendChild(li);
+    }
+  } catch (error) {
+    console.error(error);
+    alert("failed to fetch chats");
   }
 }
 
@@ -74,4 +74,4 @@ async function logoutUser() {
   location.href = "../index.html";
 }
 
-getMessages();
+getChats();
